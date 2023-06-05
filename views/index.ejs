@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple ToDo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="heading">
+        <a href="/"><h1>SimpleToDo</h1></a>
+      </div>
+
+      <div id="clearall-div">
+        <form action="/tasks?_method=DELETE" method="POST">
+          <button class="buttons" type="submit">Clear All</button>
+        </form>
+      </div>
+
+      <div class="forms-div">
+        <% if(editMode) { %>
+
+        <form action="/tasks/<%=oldTask._id%>?_method=PATCH" method="POST">
+          <input
+            required
+            name="title"
+            id="title-ip"
+            type="text"
+            value="<%=oldTask.title%>"
+          />
+
+          <input
+            required
+            name="task"
+            id="task-ip"
+            type="text"
+            value="<%=oldTask.task%>"
+          />
+          <button name="update-task-btn" type="submit" id="update-task-btn">
+            Update Task
+          </button>
+        </form>
+
+        <% } else { %>
+
+        <form action="/tasks" method="POST" autocomplete="off">
+          <input
+            required
+            name="title"
+            id="title-ip"
+            type="text"
+            placeholder="Title"
+          />
+          <input
+            required
+            name="task"
+            id="task-ip"
+            type="text"
+            placeholder="Task"
+          />
+          <button name="add-task-btn" type="submit" id="add-task-btn">
+            Add Task
+          </button>
+        </form>
+
+        <% } %>
+      </div>
+
+      <div class="tasks-div">
+        <% tasks.forEach((task) => { %>
+
+        <div class="task">
+          <div id="title-div"><b><%= task.title %> </b></div>
+          -
+          <div id="task-div"><%= task.task %></div>
+
+          <form method="GET" action="/tasks/<%= task._id %>/edit">
+            <button class="buttons" type="submit">Edit</button>
+          </form>
+
+          <form method="POST" action="/tasks/<%= task._id %>?_method=DELETE">
+            <button class="buttons" type="submit">Delete</button>
+          </form>
+        </div>
+
+        <% }); %>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

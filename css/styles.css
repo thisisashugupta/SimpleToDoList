@@ -1,0 +1,84 @@
+html,
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(166, 225, 255);
+}
+
+input {
+  height: 20px;
+  margin: 0 10px; /* Optional: Add spacing between inputs */
+}
+
+button {
+  border: 2px black solid;
+  background: #000;
+  color: aliceblue;
+  height: 25px;
+  margin: 0 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(166, 225, 255);
+  height: 100vh;
+  width: 100vw;
+}
+
+.heading {
+  background-color: aliceblue;
+  text-align: center;
+  width: 100%;
+}
+
+#clearall-div {
+  margin: 10px;
+  text-align: center;
+  width: 90%;
+}
+
+.forms-div {
+  width: 90%;
+}
+
+.forms-div form {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+#title-ip {
+  width: 100px;
+}
+#task-ip {
+  width: 250px;
+}
+
+.tasks-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 8px;
+}
+
+.task {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  padding: 10px;
+}
+
+.task button {
+  margin: 0 5px;
+}
