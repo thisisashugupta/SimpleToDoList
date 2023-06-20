@@ -9,7 +9,16 @@
   <body>
     <div class="container">
       <div class="heading">
-        <a href="/"><h1>SimpleToDo</h1></a>
+        <h1>SimpleToDo</h1>
+        <%= User %>
+      </div>
+
+      <div class="flash"><%= messages %></div>
+
+      <div id="logout-div">
+        <form action="/logout" method="POST">
+          <button class="buttons" type="submit">Log Out</button>
+        </form>
       </div>
 
       <div id="clearall-div">

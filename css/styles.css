@@ -38,7 +38,10 @@ button {
   width: 100%;
 }
 
-#clearall-div {
+#clearall-div,
+#logout-div,
+#signup-div,
+#login-div {
   margin: 10px;
   text-align: center;
   width: 90%;
