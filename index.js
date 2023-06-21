@@ -4,8 +4,8 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const SimpleToDo = require("../../src/models/todo");
-const User = require("../../src/models/user");
+const SimpleToDo = require("./src/models/todo");
+const User = require("./src/models/user");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -46,7 +46,7 @@ app.set("views", "src/views");
 app.set("view engine", "ejs");
 
 // serving static files
-app.use(express.static("public/js"));
+app.use(express.static(__dirname));
 app.use(express.static("public/css"));
 app.use(express.static("src/models"));
 
