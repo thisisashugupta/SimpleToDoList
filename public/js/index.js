@@ -1,11 +1,11 @@
 require("dotenv").config();
+const PORT = process.env.port || 1337;
 const express = require("express");
 const app = express();
-const PORT = process.env.port || 1337;
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const SimpleToDo = require("./models/todo");
-const User = require("./models/user");
+const SimpleToDo = require("../../src/models/todo");
+const User = require("../../src/models/user");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -14,7 +14,7 @@ mongoose.set("strictQuery", false);
 // connect to simpletodo database
 async function connectDB() {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const conn = await mongoose.connect(process.env.localURI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     console.log(err);
@@ -42,12 +42,15 @@ function startListening() {
 */
 
 // view engine setup
-// app.set("views", __dirname + "views");
+app.set("views", "src/views");
 app.set("view engine", "ejs");
 
+// serving static files
+app.use(express.static("public/js"));
+app.use(express.static("public/css"));
+app.use(express.static("src/models"));
+
 // Middlewares
-app.use(express.static("css")); // serving css folder (static files)
-app.use(express.static("models"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use((req, res, next) => {
