@@ -57,7 +57,17 @@ app.use((req, res, next) => {
   console.log(req.method, req.path /* req.socket.remoteAddress */);
   next();
 });
-app.use(session({ secret: "$2b$12$OmXeqcYs8vAc6xMwRh1Z" }));
+app.use(
+  session({
+    secret: "$2b$12$OmXeqcYs8vAc6xMwRh1Z",
+    saveUninitialized: false,
+    // if saveUninitialized is true then a new session is made for every request to the server
+    // saveUninitialized: When an empty session object is created and no properties are set, it is the uninitialized state. So, setting saveUninitialized to false will not save the session if it is not modified.
+    resave: false,
+    // resave: It basically means that for every request to the server, it reset the session cookie. Even if the request was from the same user or browser and the session was never modified during the request.
+    // The default value of both resave and saveUninitialized is true, but using the default is deprecated. So, set the appropriate value according to the use case.
+  })
+);
 // $2b$12$OmXeqcYs8vAc6xMwRh1Z
 app.use(flash());
 
