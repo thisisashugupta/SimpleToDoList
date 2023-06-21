@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 });
 app.use(express.static("css")); // serving css folder (static files)
 app.use(express.static("models"));
-app.use(express.static("css"));
+app.use(express.static("views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
