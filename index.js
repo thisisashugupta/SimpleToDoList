@@ -41,17 +41,19 @@ function startListening() {
 
 */
 
+// view engine setup
+app.set("views", __dirname + "views");
+app.set("view engine", "ejs");
+
 // Middlewares
+app.use(express.static("css")); // serving css folder (static files)
+app.use(express.static("models"));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use((req, res, next) => {
   console.log(req.method, req.path /* req.socket.remoteAddress */);
   next();
 });
-app.use(express.static("css")); // serving css folder (static files)
-app.use(express.static("models"));
-app.use(express.static("views"));
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
-app.set("view engine", "ejs");
 app.use(session({ secret: "$2b$12$OmXeqcYs8vAc6xMwRh1Z" }));
 // $2b$12$OmXeqcYs8vAc6xMwRh1Z
 app.use(flash());
