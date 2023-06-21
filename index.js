@@ -9,6 +9,7 @@ const User = require("./models/user");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("connect-flash");
+let ejs = require("ejs");
 
 mongoose.set("strictQuery", false);
 // connect to simpletodo database
