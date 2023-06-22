@@ -105,7 +105,8 @@ app.get("/login", (req, res) => {
   // show form for auth
   if (req.session.session_id) {
     console.log("already logged in with session id: ", req.session.session_id);
-    return res.send("already logged in. log out first.");
+    req.flash("loggedInMessage", "Already logged in!"); // Set a flash message by passing the key, followed by the value, to req.flash().
+    return res.redirect("/tasks");
   }
   res.render("login", { messages: req.flash("invalidMessage") });
 });
